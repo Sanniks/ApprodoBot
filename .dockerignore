@@ -1,8 +1,6 @@
 # flyctl launch added from .gitignore
-**/.env
 **/TODOLIST.txt
 **/discord.log
 
 # flyctl launch added from .venv/.gitignore
 .venv/**/*
-fly.toml

@@ -306,14 +306,15 @@ async def on_ready():
             cog = MyBot(bot)
             await bot.add_cog(cog)
             # Registrazione manuale del comando per la guild
-            guild_test = discord.Object(id=1468198221972115551)
-            #guild = discord.Object(id=1220664060585050182)
+            #guild_test = discord.Object(id=1468198221972115551)
+            guild = discord.Object(id=1220664060585050182)
+            bot.tree.copy_global_to(guild=guild)
+            await bot.tree.sync(guild=guild)
+            await bot.tree.sync()
 
-            bot.tree.copy_global_to(guild=guild_test)
-            await bot.tree.sync(guild=guild_test)
             #await bot.tree.sync(guild=guild)
 
-            print(f"{bot.user.name} è online!")
+            print(f"{bot.user.name} è online! Yuppie!")
         except Exception as e:
             print(f"Errore durante tree.sync: {e}")
     except Exception as e:
