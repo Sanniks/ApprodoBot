@@ -8,6 +8,7 @@ import os
 
 from MyLibraries.cogs.basic import Basic
 from MyLibraries.cogs.currency_database import Currency
+from MyLibraries.cogs.blackjackpinnu import BlackjackPinnu
 
 
 
@@ -44,8 +45,10 @@ def run_bot():
         try:
             basic_commands = Basic(bot)
             currency_commands = Currency(bot, pool)
+            blackjack_commands = BlackjackPinnu(bot, pool)
             await bot.add_cog(basic_commands)
             await bot.add_cog(currency_commands)
+            await bot.add_cog(blackjack_commands)
             # Registrazione manuale del comando per la guild
             guild_test = discord.Object(id=1468198221972115551)
             bot.tree.copy_global_to(guild=guild_test)

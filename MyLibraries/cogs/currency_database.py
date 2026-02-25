@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
-from pathlib import Path
 import MyLibraries.Functions.utils as ut
 
 class Currency(commands.Cog):
@@ -34,7 +33,7 @@ class Currency(commands.Cog):
     # ==========================================================
     @app_commands.command(name="createbankaccount", description="Crea un nuovo profilo bancario")
     @app_commands.describe(character_name="Nome del personaggio")
-    async def createbankaccount(self, interaction: discord.Interaction, character_name: str, currency : int = 0):
+    async def createbankaccount(self, interaction: discord.Interaction, character_name: str, currency: int = 0):
         discord_id = interaction.user.id
         async with self.pool.acquire() as conn:
             # Controllo: esiste già?

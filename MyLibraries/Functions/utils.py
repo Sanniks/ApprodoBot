@@ -136,3 +136,27 @@ async def character_name_autocomplete_database(interaction: discord.Interaction,
         )
         for row in rows
     ]
+
+async def character_name_autocomplete_blackjack(interaction: discord.Interaction, current: str, pool):
+    """Autocomplete che mostra solo i personaggi su cui l'utente ha permessi"""
+    user_id = interaction.user.id
+    async with pool.acquire() as conn:
+        rows = await conn.fetch(
+            """
+            SELECT character_name
+            FROM bank_accounts
+            WHERE owner_discord_id = $1
+                AND character_name ILIKE $2
+            ORDER BY character_name
+            LIMIT 25
+            """,
+            user_id, f"{current}%"
+        )
+
+    return [
+        discord.app_commands.Choice(
+            name=row["character_name"],
+            value=row["character_name"]
+        )
+        for row in rows
+    ]
