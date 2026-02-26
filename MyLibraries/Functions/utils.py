@@ -160,3 +160,24 @@ async def character_name_autocomplete_blackjack(interaction: discord.Interaction
         )
         for row in rows
     ]
+
+
+async def _get_account_with_permission(interaction, conn, character_name):
+    row = await conn.fetchrow(
+        """
+        SELECT copper, owner_discord_id FROM bank_accounts
+        WHERE character_name = $1
+        """,
+        character_name
+    )
+    if not row:
+        await interaction.response.send_message(
+            f"❌ Nessun conto trovato per **{character_name}**."
+        )
+        return None
+    if not has_permission(interaction, row["owner_discord_id"]):
+        await interaction.response.send_message(
+            "❌ Non hai i permessi per questo conto."
+        )
+        return None
+    return row
