@@ -74,7 +74,7 @@ def run_bot():
             guild = discord.Object(id=1220664060585050182)
             bot.tree.copy_global_to(guild=guild)
             await bot.tree.sync(guild=guild)
-            print(f"{bot.user.name} V2.1 è online! Yuppie!")
+            print(f"{bot.user.name} V2.2.1 è online! Yuppie!")
 
         except Exception as e:
             print(f"Errore durante tree.sync: {e}")

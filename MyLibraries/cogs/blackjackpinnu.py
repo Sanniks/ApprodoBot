@@ -38,7 +38,7 @@ class BlackjackPinnu(commands.Cog):
         if bet > row['copper']:
             await interaction.response.send_message("❌ Non hai così tanti soldi...")
             return
-        if self.bet > row_Pinnu['copper']:
+        if bet > row_Pinnu['copper']:
             await interaction.response.send_message("🐐 Beeeeeeeeeeeeeeeee (CAZZO HO FINITO I SOLDI) 🐐")
             return
         if bet <= 0:
